@@ -1,0 +1,33 @@
+{
+  "mistral": {
+    "apiKey": "tNzFBq6hHLnfEbjYXNB0GLJBQh8KSSVf",
+    "model": "mistral-small-latest"
+  },
+  "college": {
+    "name": "Bridgewater International College",
+    "phone": "+977-9802344649",
+    "email": "info@bridgewater.edu.np",
+    "location": "Sinamangal, Kathmandu",
+    "website": "https://bridgewater.edu.np"
+  },
+  "images": {
+    "hero": {
+      "background": "/herosection1.webp",
+      "alt": "BWIC Campus"
+    },
+    "logo": {
+      "src": "/logo.png",
+      "alt": "BWIC Logo"
+    },
+    "about": {
+      "collegeBuilding": "/college-building.jpg",
+      "alt": "Bridgewater International College Building"
+    },
+    "icons": {
+      "favicon": "/favicon.ico",
+      "appleTouchIcon": "/apple-touch-icon.png",
+      "ogImage": "/logo.png"
+    }
+   
+  }
+}
