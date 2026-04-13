@@ -33,7 +33,7 @@ body {
   padding: 0;
   overflow-x: hidden;
   width: 100%;
-  max-width: 100vw;
+  max-width: 100%;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -41,7 +41,7 @@ body {
 main,
 section,
 footer {
-  max-width: 100vw;
+  max-width: 100%;
   overflow-x: hidden;
 }
 

@@ -11,6 +11,8 @@ export default function BBSPage() {
       highlightedWord="BBS"
       description="Build a strong foundation in business and management with our 4-year Bachelor of Business Studies program under Tribhuvan University's Faculty of Management."
       heroImage="/images/academics/business_studies_stu_8a63f617.jpg"
+      affiliationTitle="TU Affiliated"
+      affiliationSubtitle="Global Standard"
       stats={[
         { label: "Duration", value: "4 Years", icon: Clock },
         { label: "Faculty", value: "Management", icon: Users },

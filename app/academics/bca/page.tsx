@@ -11,6 +11,8 @@ export default function BCAPage() {
       highlightedWord="BCA"
       description="Master computer applications, programming, and software development with our comprehensive 4-year bachelor's degree program under Tribhuvan University's Faculty of Humanities and Social Sciences."
       heroImage="/images/academics/computer_programming_9e891944.jpg"
+      affiliationTitle="TU Affiliated"
+      affiliationSubtitle="Global Standard"
       stats={[
         { label: "Duration", value: "4 Years", icon: Clock },
         { label: "Semesters", value: "8", icon: Users },

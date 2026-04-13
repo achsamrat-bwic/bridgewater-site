@@ -107,7 +107,7 @@ export default function MainNavBar() {
             />
           </Link>
 
-          <div className="hidden md:flex items-center space-x-0.5 lg:space-x-1 flex-nowrap flex-1 justify-center px-2">
+          <div className="hidden lg:flex items-center space-x-0.5 xl:space-x-1 flex-nowrap flex-1 justify-center px-1 xl:px-2">
             {navItems.map((item) => (
               <div
                 key={item.name}
@@ -118,27 +118,27 @@ export default function MainNavBar() {
                 {item.dropdown ? (
                   <button
                     onClick={() => setOpenDropdown(openDropdown === item.name ? null : item.name)}
-                    className="px-2 md:px-2.5 lg:px-3 py-2 text-xs md:text-sm lg:text-base text-gray-700 hover:text-[#1e3a5f] font-medium transition-colors flex items-center"
+                    className="px-2 lg:px-2 xl:px-3 py-2 text-sm lg:text-[15px] xl:text-base text-gray-700 hover:text-[#1e3a5f] font-medium transition-colors flex items-center"
                   >
                     {item.name}
-                    <ChevronDown className={`w-3 h-3 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4 ml-0.5 transition-transform duration-200 ${openDropdown === item.name ? 'rotate-180' : ''}`} />
+                    <ChevronDown className={`w-3.5 h-3.5 lg:w-4 lg:h-4 ml-0.5 transition-transform duration-200 ${openDropdown === item.name ? 'rotate-180' : ''}`} />
                   </button>
                 ) : (
                   <Link
                     href={item.href}
-                    className="px-2 md:px-2.5 lg:px-3 py-2 text-xs md:text-sm lg:text-base text-gray-700 hover:text-[#1e3a5f] font-medium transition-colors flex items-center"
+                    className="px-2 lg:px-2 xl:px-3 py-2 text-sm lg:text-[15px] xl:text-base text-gray-700 hover:text-[#1e3a5f] font-medium transition-colors flex items-center"
                   >
                     {item.name}
                   </Link>
                 )}
                 {item.dropdown && (
                   <div className={`absolute top-full left-0 pt-2 z-[100] transition-all duration-200 ${openDropdown === item.name ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
-                    <div className="w-40 md:w-48 lg:w-56 bg-white shadow-lg rounded-md py-2 border border-gray-100 overflow-visible">
+                    <div className="w-48 lg:w-52 xl:w-56 bg-white shadow-lg rounded-md py-2 border border-gray-100 overflow-visible">
                       {item.dropdown.map((subItem) => (
                         <Link
                           key={subItem.name}
                           href={subItem.href}
-                          className="block px-3 md:px-4 py-1.5 md:py-2 lg:py-2.5 text-xs md:text-xs lg:text-sm text-gray-700 hover:bg-[#1e3a5f] hover:text-white transition-colors whitespace-nowrap"
+                          className="block px-4 py-2 lg:py-2.5 text-sm md:text-sm text-gray-700 hover:bg-[#1e3a5f] hover:text-white transition-colors whitespace-nowrap"
                           onClick={() => setOpenDropdown(null)}
                         >
                           {subItem.name}
@@ -167,7 +167,7 @@ export default function MainNavBar() {
           </div>
 
           <button
-            className="md:hidden relative w-10 h-10 flex items-center justify-center flex-shrink-0"
+            className="lg:hidden relative w-10 h-10 flex items-center justify-center flex-shrink-0"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label={mobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
           >
@@ -185,7 +185,7 @@ export default function MainNavBar() {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`md:hidden fixed inset-0 z-[100] transition-all duration-300 ${mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        className={`lg:hidden fixed inset-0 z-[100] transition-all duration-300 ${mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
           }`}
       >
         {/* Backdrop */}

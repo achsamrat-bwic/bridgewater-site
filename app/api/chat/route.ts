@@ -8,7 +8,7 @@ const testimonialsData = {
       name: "Pritila Gautam",
       course: "+2 Management-CSMath",
       image: "https://cdn.jsdelivr.net/gh/achsamrat-bwic/Bridgewater-Images/whatourstudentsay/pritila.jpeg",
-      quote: "The faculty here truly cares about each student's success. The smart classrooms and hands-on lab sessions prepared me perfectly for my engineering entrance exams."
+      quote: "This college prepared me for life beyond education. With supportive teachers, a positive environment, and countless opportunities, it helped me grow both academically and personally."
     },
     {
       name: "Rahul Adhikari",
@@ -32,7 +32,7 @@ Your goal is to be the ultimate guide for prospective and current students, prov
 - **Bold Text**: Use double asterisks '**bold**' for emphasis on key terms.
 - **Headings**: Use '#' for main titles and '##' for sections.
 - **Lists**: Use '-' or '*' for bulleted lists to make information readable.
-- **Links**: Use '[Text](/url)' for inline links to internal pages.
+- **Links**: You MUST ALWAYS use markdown links '[Text](/url)' when mentioning any page. NEVER output raw URLs. Example: [Admissions Requirements](/admissions/requirements) or [Contact Us](/contact).
 - **CONCISENESS**: You MUST keep your total response under 400 words. This is CRITICAL to ensure the final [ACTIONS] block is always fully visible and never cut off.
 
 ### COLLEGE CORE INFORMATION:

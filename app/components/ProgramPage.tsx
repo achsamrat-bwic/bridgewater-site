@@ -5,12 +5,12 @@ import type { ElementType } from "react";
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { 
-  GraduationCap, 
-  Clock, 
-  Users, 
-  BookOpen, 
-  Target, 
+import {
+  GraduationCap,
+  Clock,
+  Users,
+  BookOpen,
+  Target,
   Briefcase,
   CheckCircle,
   ArrowRight,
@@ -98,6 +98,8 @@ interface ProgramPageProps {
     paths: CareerPath[];
   };
   highlights: string[];
+  affiliationTitle?: string;
+  affiliationSubtitle?: string;
 }
 
 export default function ProgramPage({
@@ -112,13 +114,15 @@ export default function ProgramPage({
   eligibility,
   careers,
   highlights,
+  affiliationTitle = "NEB Affiliated",
+  affiliationSubtitle = "Quality Assured",
 }: ProgramPageProps) {
   const [applyModalOpen, setApplyModalOpen] = useState(false);
 
   return (
-    <main>
+    <main className="w-full overflow-hidden flex flex-col">
       <Header />
-      
+
       <section className="relative pt-[88px] sm:pt-[96px]">
         <div className="relative bg-gradient-to-br from-[#1e3a5f] via-[#243f64] to-[#1a3050] py-20 md:py-28 overflow-hidden">
           <div className="absolute inset-0 opacity-[0.04]">
@@ -131,7 +135,7 @@ export default function ProgramPage({
               <rect width="100%" height="100%" fill="url(#hero-pattern)" />
             </svg>
           </div>
-          
+
           <div className="absolute top-20 left-10 w-72 h-72 bg-[#c9a227]/5 rounded-full blur-3xl" />
           <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#c9a227]/5 rounded-full blur-3xl" />
 
@@ -150,14 +154,14 @@ export default function ProgramPage({
               <GraduationCap className="w-4 h-4" />
               {badge}
             </motion.div>
-            
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight break-words">
               {title.split(highlightedWord)[0]}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#c9a227] to-[#d4af37]">{highlightedWord}</span>
               {title.split(highlightedWord)[1] || ""}
             </h1>
-            
-            <p className="text-lg sm:text-xl md:text-2xl text-blue-100/80 leading-relaxed max-w-3xl mx-auto">
+
+            <p className="text-base sm:text-xl md:text-2xl text-blue-100/80 leading-relaxed max-w-3xl mx-auto">
               {description}
             </p>
           </motion.div>
@@ -171,17 +175,17 @@ export default function ProgramPage({
           transition={{ delay: 0.4 }}
           className="relative -mt-10 z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"
         >
-          <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-gray-100">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 border border-gray-100">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
               {stats.map((stat, index) => {
                 const IconComponent = stat.icon;
                 return (
-                  <div key={index} className="text-center">
+                  <div key={index} className="text-center min-w-0">
                     <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[#1e3a5f] to-[#2a4a6f] rounded-xl flex items-center justify-center mb-3">
                       <IconComponent className="w-6 h-6 text-white" />
                     </div>
-                    <p className="text-2xl font-bold text-[#1e3a5f]">{stat.value}</p>
-                    <p className="text-gray-600 text-sm">{stat.label}</p>
+                    <p className="text-lg sm:text-xl md:text-2xl font-bold text-[#1e3a5f] break-words leading-tight">{stat.value}</p>
+                    <p className="text-gray-600 text-xs sm:text-sm mt-1">{stat.label}</p>
                   </div>
                 );
               })}
@@ -198,7 +202,7 @@ export default function ProgramPage({
               variants={containerVariants}
               className="grid lg:grid-cols-2 gap-10 items-center"
             >
-              <motion.div variants={itemVariants}>
+              <motion.div variants={itemVariants} className="min-w-0 break-words">
                 <span className="inline-block text-[#c9a227] font-semibold text-sm uppercase tracking-wider mb-3">
                   Program Overview
                 </span>
@@ -214,21 +218,20 @@ export default function ProgramPage({
                 </div>
               </motion.div>
 
-              <motion.div variants={itemVariants} className="relative">
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+              <motion.div variants={itemVariants} className="relative min-w-0 max-w-full">
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl w-full h-[260px] sm:h-[350px] lg:h-[400px]">
                   <Image
                     src={CDN_CONFIG.getCdnUrl(heroImage.replace(/^\/images/, "images"))}
                     alt={title}
-                    width={600}
-                    height={400}
-                    className="w-full h-[350px] object-cover"
+                    fill
+                    className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a5f]/60 to-transparent" />
                 </div>
-                <div className="absolute -bottom-6 -left-6 bg-gradient-to-br from-[#c9a227] to-[#d4af37] rounded-2xl p-5 shadow-xl">
-                  <Award className="w-8 h-8 text-white mb-2" />
-                  <p className="text-white font-bold text-lg">NEB Affiliated</p>
-                  <p className="text-white/80 text-sm">Quality Assured</p>
+                <div className="absolute bottom-4 left-4 sm:-bottom-6 sm:-left-6 bg-gradient-to-br from-[#c9a227] to-[#d4af37] rounded-2xl p-4 sm:p-5 shadow-xl z-10 max-w-[85%] sm:max-w-xs break-words">
+                  <Award className="w-6 h-6 sm:w-8 sm:h-8 text-white mb-1 sm:mb-2" />
+                  <p className="text-white font-bold text-base sm:text-lg">{affiliationTitle}</p>
+                  <p className="text-white/80 text-xs sm:text-sm">{affiliationSubtitle}</p>
                 </div>
               </motion.div>
             </motion.div>
@@ -263,9 +266,9 @@ export default function ProgramPage({
                 <motion.div
                   key={index}
                   variants={itemVariants}
-                  className="group bg-white rounded-xl p-6 shadow-md border border-gray-100 hover:border-[#c9a227]/30 hover:shadow-xl transition-all duration-300"
+                  className="group bg-white rounded-xl p-6 shadow-md border border-gray-100 hover:border-[#c9a227]/30 hover:shadow-xl transition-all duration-300 min-w-0"
                 >
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-4 min-w-0">
                     <div className="w-10 h-10 bg-gradient-to-br from-[#1e3a5f] to-[#2a4a6f] rounded-lg flex items-center justify-center flex-shrink-0 group-hover:from-[#c9a227] group-hover:to-[#d4af37] transition-all duration-300">
                       <BookOpen className="w-5 h-5 text-white" />
                     </div>
@@ -305,12 +308,12 @@ export default function ProgramPage({
                     <motion.div
                       key={index}
                       variants={itemVariants}
-                      className="flex items-start gap-4 bg-gray-50 rounded-xl p-4"
+                      className="flex items-start gap-4 bg-gray-50 rounded-xl p-4 min-w-0 break-words"
                     >
                       <div className="w-8 h-8 bg-gradient-to-br from-[#c9a227] to-[#d4af37] rounded-full flex items-center justify-center flex-shrink-0">
                         <CheckCircle className="w-5 h-5 text-white" />
                       </div>
-                      <p className="text-gray-700">{req}</p>
+                      <p className="text-gray-700 min-w-0 break-words leading-snug">{req}</p>
                     </motion.div>
                   ))}
                 </div>
@@ -389,7 +392,7 @@ export default function ProgramPage({
                 <motion.div
                   key={index}
                   variants={itemVariants}
-                  className="group bg-white rounded-xl p-6 shadow-md border border-gray-100 hover:border-[#c9a227]/30 hover:shadow-xl transition-all duration-300 text-center"
+                  className="group bg-white rounded-xl p-6 shadow-md border border-gray-100 hover:border-[#c9a227]/30 hover:shadow-xl transition-all duration-300 text-center min-w-0 break-words"
                 >
                   <div className="w-14 h-14 mx-auto bg-gradient-to-br from-[#1e3a5f] to-[#2a4a6f] rounded-2xl flex items-center justify-center mb-4 group-hover:from-[#c9a227] group-hover:to-[#d4af37] transition-all duration-300">
                     <Briefcase className="w-7 h-7 text-white" />
@@ -476,7 +479,7 @@ export default function ProgramPage({
                 aria-label="Close modal"
                 className="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all duration-200 hover:scale-105 cursor-pointer"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
               </button>
             </div>
 

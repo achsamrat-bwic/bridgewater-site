@@ -11,6 +11,8 @@ export default function CAPage() {
       highlightedWord="CA"
       description="Prepare for the prestigious Chartered Accountancy qualification with our comprehensive coaching program through Academy of Commerce, affiliated with the Institute of Chartered Accountants of Nepal (ICAN)."
       heroImage="/images/academics/chartered_accountant_aa215377.jpg"
+      affiliationTitle="ICAN Affiliated"
+      affiliationSubtitle="Chartered Accountancy"
       stats={[
         { label: "Levels", value: "CAP I, II, III", icon: Clock },
         { label: "Faculty", value: "Expert CAs", icon: Users },

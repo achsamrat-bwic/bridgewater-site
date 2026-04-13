@@ -20,7 +20,7 @@ const testimonials: Testimonial[] = [
     name: "Pritila Gautam",
     course: "+2 Management-CSMath",
     image: "https://cdn.jsdelivr.net/gh/achsamrat-bwic/Bridgewater-Images/whatourstudentsay/pritila.jpeg",
-    quote: "The faculty here truly cares about each student's success. The smart classrooms and hands-on lab sessions prepared me perfectly for my engineering entrance exams."
+    quote: "This college prepared me for life beyond education. With supportive teachers, a positive environment, and countless opportunities, it helped me grow both academically and personally."
   },
   {
     name: "Rahul Adhikari",

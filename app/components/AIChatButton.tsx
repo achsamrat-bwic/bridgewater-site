@@ -26,11 +26,32 @@ const quickQuestions = [
   "What are the fees?",
 ];
 
-const renderLineWithBold = (line: string) => {
-  const parts = line.split(/(\*\*.*?\*\*)/g);
+const renderLineWithFormatting = (line: string) => {
+  const parts = line.split(/(\[[^\]]+\]\([^)]+\)|\*\*.*?\*\*|\*.*?\*)/g);
   return parts.map((part, j) => {
     if (part.startsWith('**') && part.endsWith('**')) {
       return <strong key={j} className="font-bold text-[#1e3a5f]">{part.slice(2, -2)}</strong>;
+    }
+    if (part.startsWith('*') && part.endsWith('*') && !part.startsWith('**')) {
+      return <em key={j} className="italic text-[#1e3a5f]/90">{part.slice(1, -1)}</em>;
+    }
+    if (part.startsWith('[') && part.includes('](') && part.endsWith(')')) {
+      const match = part.match(/\[([^\]]+)\]\(([^)]+)\)/);
+      if (match) {
+        const url = match[2];
+        const isExternal = url.startsWith('http');
+        return (
+          <Link
+            key={j}
+            href={url}
+            target={isExternal ? "_blank" : undefined}
+            rel={isExternal ? "noopener noreferrer" : undefined}
+            className="text-[#c9a227] hover:underline font-medium inline-flex items-center"
+          >
+            {match[1]}
+          </Link>
+        );
+      }
     }
     return part;
   });
@@ -314,20 +335,30 @@ export default function AIChatButton() {
                           if (trimLine.startsWith('## ')) return <h3 key={i} className="text-sm font-bold text-[#1e3a5f] mt-4 mb-1">{trimLine.slice(3)}</h3>;
                           if (trimLine.startsWith('# ')) return <h2 key={i} className="text-base font-bold text-[#1e3a5f] mt-5 mb-2">{trimLine.slice(2)}</h2>;
                           
-                          // Bullet points
+                          // Bullet points and Numbered lists
+                          const numberedMatch = trimLine.match(/^(\d+\.)\s+(.*)/);
+                          if (numberedMatch) {
+                            return (
+                              <div key={i} className="flex gap-2 ml-1 items-start mt-1">
+                                <span className="text-[#c9a227] font-bold text-sm w-4 flex-shrink-0 mt-0.5">{numberedMatch[1]}</span>
+                                <span className="flex-1">{renderLineWithFormatting(numberedMatch[2])}</span>
+                              </div>
+                            );
+                          }
+                          
                           if (trimLine.startsWith('- ') || trimLine.startsWith('* ')) {
                             const content = trimLine.slice(2);
                             return (
-                              <div key={i} className="flex gap-2 ml-1 items-start">
+                              <div key={i} className="flex gap-2 ml-1 items-start mt-1">
                                 <span className="text-[#c9a227] mt-1.5 w-1 h-1 rounded-full bg-[#c9a227] flex-shrink-0" />
-                                <span className="flex-1">{renderLineWithBold(content)}</span>
+                                <span className="flex-1">{renderLineWithFormatting(content)}</span>
                               </div>
                             );
                           }
 
                           return (
                             <p key={i} className="leading-relaxed">
-                              {renderLineWithBold(line)}
+                              {renderLineWithFormatting(line)}
                             </p>
                           );
                         })}
